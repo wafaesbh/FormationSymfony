@@ -18,7 +18,9 @@ class DefaultController extends AbstractController
     {
         $categories = $repository->findAll();
         return $this->render('default/index.html.twig', [
-            'products' => $repository->getProductWithHeigherQuantity(-1, 15),
+            
+            // 'products' => $repository->getProductWithHeigherQuantity(-1, 15),
+            'products' => $repository->findAll(),
             'categories' => $categories
         ]);
     }

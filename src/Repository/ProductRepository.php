@@ -85,18 +85,14 @@ class ProductRepository extends ServiceEntityRepository
         return $stmt->fetchAllAssociative();
     }
 
-    /**
-     * @Route("/search" , name ="search")
-     * @param string $term
-     * @return int|mixed|string
-     */
+   
     public function search(string $term)
     {
         $qb = $this->createQueryBuilder('p');
         $expr = $qb->expr();
-
-        return $qb->where(
-            $expr->like('p.label' ,$expr->literal('%'.$term.'%'))
+        return $qb
+            ->where(
+                 $expr->like('p.label' ,$expr->literal('%'.$term.'%'))
         )
            // ->setParameter('t' , $term)
             ->getQuery()

@@ -58,13 +58,13 @@ class ProductController extends AbstractController
      * @param ProductRepository $repository
      * @return Response
      */
-   public  function search(Request  $request , ProductRepository  $repository)
-
+   public  function search(Request  $request , ProductRepository  $repository):Response
    {
        $q = $request->query->get('q');
        dump($q);
-       $products = $repository->search($q);
-       return $this->render('default/index/html.twig',[
+       $products = $repository->search(['term' => $q,
+       ]);
+       return $this->render('default/index.html.twig',[
            'products'=>$products,
        ]);
    }
